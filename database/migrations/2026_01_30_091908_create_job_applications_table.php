@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Job;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,15 +13,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('job_listings', function (Blueprint $table) {
+         Schema::create('job_applications', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
-            $table->unsignedInteger('salary');
-            $table->string('location');
-            $table->string('category');
-            $table->enum('experience', Job::$experience);
-            $table->softDeletes();
+            $table->foreignIdFor(User::class)->constrained();
+            $table->foreignIdFor(Job::class)->constrained();
+            $table->unsignedInteger('expected_salary');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('job_listings');
+        Schema::dropIfExists('job_applications');
     }
 };
