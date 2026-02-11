@@ -7,6 +7,17 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## How to run the project
+
+1. Clone the project
+2. Go to the project directory
+3. Run the command `composer install`
+4. Run the command `php artisan migrate`
+5. Run the command `php artisan db:seed`
+6. Run the command `php artisan serve`
+7. Run the command `npm run dev`
+8. Go to the url `http://localhost:8000/`
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
