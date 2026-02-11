@@ -13,34 +13,47 @@
     <nav class="mb-8 flex justify-between text-lg font-medium">
       <ul class="flex space-x-2">
         <li>
-          <a href="{{ route('jobs.index') }}">Home</a>
+          <a href="{{ route('jobs.index') }}"
+            class="px-4 py-2 rounded-lg bg-gray-100 hover:bg-blue-100 hover:text-blue-700 transition-all duration-200 active:scale-95">
+            Home
+          </a>
         </li>
       </ul>
+      <ul class="flex items-center space-x-3 text-sm font-medium">
+        @auth
+            <li>
+                <a href="{{ route('my-job-applications.index') }}"
+                  class="px-4 py-2 rounded-lg bg-gray-100 hover:bg-blue-100 hover:text-blue-700 transition-all duration-200 active:scale-95">
+                    {{ auth()->user()->name ?? 'Anonymous' }} · Applications
+                </a>
+            </li>
 
-        <ul class="flex space-x-2">
-          @auth
-            <li class="border-1">
-              {{-- {{ auth()->user()->name ?? 'Anynomus' }} --}}
-              <a href="{{ route('my-job-applications.index') }}">
-               {{ auth()->user()->name ?? 'Anynomus' }}: Applications
-              </a>
-            </li>
             <li>
-              <a href="{{ route('my-jobs.index') }}">My Jobs</a>
+                <a href="{{ route('my-jobs.index') }}"
+                  class="px-4 py-2 rounded-lg bg-gray-100 hover:bg-green-100 hover:text-green-700 transition-all duration-200 active:scale-95">
+                    My Jobs
+                </a>
             </li>
+
             <li>
-              <form action="{{ route('auth.destroy') }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button>Logout</button>
-              </form>
+                <form action="{{ route('auth.destroy') }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit"
+                            class="px-4 py-2 rounded-lg bg-red-100 hover:bg-red-200 hover:text-red-700 transition-all duration-200 active:scale-95">
+                        Logout
+                    </button>
+                </form>
             </li>
-          @else
+        @else
             <li>
-              <a href="{{ route('auth.create') }}">Sign in</a>
+                <a href="{{ route('auth.create') }}"
+                  class="px-4 py-2 rounded-lg bg-gray-100 hover:bg-indigo-100 hover:text-indigo-700 transition-all duration-200 active:scale-95">
+                    Sign in
+                </a>
             </li>
-          @endauth
-        </ul>
+        @endauth
+      </ul>
     </nav>
      @if (session('success'))
       <div role="alert"
